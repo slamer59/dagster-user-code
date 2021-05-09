@@ -1,7 +1,7 @@
 import csv
 
 import requests
-from dagster import pipeline, solid
+from dagster import pipeline, solid, repository
 
 
 @solid
@@ -41,3 +41,6 @@ def complex_pipeline():
         most_protein=find_highest_protein_cereal(cereals),
     )
 
+@repository
+def deploy_docker_repository_user_code():
+    return [complex_pipeline]
